@@ -1,4 +1,3 @@
-import React from 'react';
 import { Menu } from 'lucide-react';
 import { NavLink } from './NavLink';
 
@@ -8,11 +7,13 @@ export function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img 
-              src="/coffee-maker-logo.png"
-              alt="Caffero Logo" 
-              className="w-12 h-12"
-            />
+            <div className="bg-brown-700/30 p-2 rounded-full flex items-center justify-center w-12 h-12">
+              <img
+                src='/coffee-maker-logo.jpg'
+                alt="Caffero Logo"
+                className="w-full h-full object-cover rounded-full"
+              />
+            </div>
             <span className="text-2xl font-bold">Caffero</span>
           </div>
           
