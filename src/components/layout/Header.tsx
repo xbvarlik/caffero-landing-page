@@ -1,7 +1,12 @@
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NavLink } from './NavLink';
+import { useState } from 'react';
 
 export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
     <header className="bg-brown-900/95 backdrop-blur-sm fixed w-full top-0 z-50">
       <div className="container mx-auto px-4 py-4">
@@ -25,11 +30,32 @@ export function Header() {
             <NavLink href="#wishlist">Wishlist</NavLink>
           </nav>
 
-          <button className="md:hidden">
-            <Menu className="w-6 h-6" />
+          <button 
+            className="md:hidden z-50" 
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 bg-brown-900 md:hidden pt-20">
+          <nav className="container mx-auto px-4 flex flex-col items-center gap-8 py-8">
+            <NavLink href="#discover" onClick={() => setIsMenuOpen(false)}>Discover</NavLink>
+            <NavLink href="#scan" onClick={() => setIsMenuOpen(false)}>Scan</NavLink>
+            <NavLink href="#shelf" onClick={() => setIsMenuOpen(false)}>My Shelf</NavLink>
+            <NavLink href="#recipes" onClick={() => setIsMenuOpen(false)}>Recipes</NavLink>
+            <NavLink href="#wishlist" onClick={() => setIsMenuOpen(false)}>Wishlist</NavLink>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

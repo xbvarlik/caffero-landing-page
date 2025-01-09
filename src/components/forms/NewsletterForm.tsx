@@ -2,12 +2,28 @@ import React, { useState } from 'react';
 
 export function NewsletterForm() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('success');
-    setEmail('');
+    setStatus('loading');
+
+    try {
+      const response = await fetch('https://caffero-landing-backend.netlify.app/api/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) throw new Error('Failed to subscribe');
+
+      setStatus('success');
+      setEmail('');
+    } catch (error) {
+      setStatus('error');
+    }
   };
 
   return (
@@ -24,13 +40,17 @@ export function NewsletterForm() {
           />
           <button
             type="submit"
-            className="px-6 py-3 bg-brown-600 text-white rounded-lg hover:bg-brown-700 transition-colors"
+            disabled={status === 'loading'}
+            className="px-6 py-3 bg-brown-600 text-white rounded-lg hover:bg-brown-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Join
+            {status === 'loading' ? 'Joining...' : 'Join'}
           </button>
         </div>
         {status === 'success' && (
           <p className="text-center text-green-400">Thanks for joining! We'll notify you when Caffero launches.</p>
+        )}
+        {status === 'error' && (
+          <p className="text-center text-red-400">Something went wrong. Please try again.</p>
         )}
       </form>
     </div>
