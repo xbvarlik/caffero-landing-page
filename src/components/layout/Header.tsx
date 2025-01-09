@@ -1,6 +1,7 @@
 import { Menu, X } from 'lucide-react';
 import { NavLink } from './NavLink';
 import { useState } from 'react';
+import { env } from '../../config/env';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,12 +15,12 @@ export function Header() {
           <div className="flex items-center gap-3">
             <div className="bg-brown-700/30 p-2 rounded-full flex items-center justify-center w-12 h-12">
               <img
-                src='/coffee-maker-logo.jpg'
-                alt="Caffero Logo"
+                src={env.LOGO_PATH}
+                alt={`${env.APP_NAME} Logo`}
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-            <span className="text-2xl font-bold">Caffero</span>
+            <span className="text-2xl font-bold">{env.APP_NAME}</span>
           </div>
           
           <nav className="hidden md:flex items-center gap-6">

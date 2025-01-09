@@ -1,4 +1,5 @@
 import { NewsletterForm } from '../forms/NewsletterForm';
+import { env } from '../../config/env';
 
 export function Hero() {
   return (
@@ -6,8 +7,8 @@ export function Hero() {
       <div className="container mx-auto px-4 flex flex-col items-center text-center">
         <div className="bg-brown-700/30 p-2 rounded-full mb-8 flex items-center justify-center w-24 h-24">
           <img
-            src='/coffee-maker-logo.jpg'
-            alt="Caffero Logo"
+            src={env.LOGO_PATH}
+            alt={`${env.APP_NAME} Logo`}
             className="w-full h-full object-cover rounded-full"
           />
         </div>
