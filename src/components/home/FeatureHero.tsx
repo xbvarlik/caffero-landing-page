@@ -15,9 +15,9 @@ export function FeatureHero({ id, icon: Icon, title, description, image, imageAl
   return (
     <div id={id} className="py-24 scroll-mt-20">
       <div className="container mx-auto px-4">
-        <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12`}>
-          <div className="flex-1">
-            <div className="max-w-xl mx-auto lg:mx-0">
+        <div className={`flex flex-col lg:flex-row ${reverse ? 'lg:flex-row-reverse' : ''} items-center justify-center gap-16 max-w-7xl mx-auto`}>
+          <div className="flex-1 max-w-xl">
+            <div className="lg:mx-0">
               <div className="flex items-center gap-4 mb-6">
                 <div className="bg-brown-700/30 p-3 rounded-full w-16 h-16 flex items-center justify-center">
                   <Icon className="w-8 h-8 text-brown-400" />
@@ -27,7 +27,7 @@ export function FeatureHero({ id, icon: Icon, title, description, image, imageAl
               <p className="text-xl text-gray-300 leading-relaxed">{description}</p>
             </div>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 max-w-xl w-full">
             <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
               <img
                 src={image}
