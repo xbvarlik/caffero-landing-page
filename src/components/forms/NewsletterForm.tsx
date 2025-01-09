@@ -9,7 +9,7 @@ export function NewsletterForm() {
     setStatus('loading');
 
     try {
-      const response = await fetch('https://caffero-landing-backend.netlify.app/api/emails', {
+      const response = await fetch('https://caffero-landing-backend.onrender.com/api/emails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
