@@ -14,8 +14,8 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en');
-  const [translations, setTranslations] = useState<Translations>(en);
+  const [language, setLanguage] = useState<Language>('tr');
+  const [translations, setTranslations] = useState<Translations>(tr);
 
   useEffect(() => {
     // Get language from URL path
@@ -24,9 +24,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     if (lang === 'tr' || lang === 'en') {
       setLanguage(lang);
     } else {
-      // Redirect to English version if no language specified
-      window.history.replaceState({}, '', '/en' + path);
-      setLanguage('en');
+      // Redirect to Turkish version if no language specified
+      window.history.replaceState({}, '', '/tr' + path);
+      setLanguage('tr');
     }
   }, []);
 
